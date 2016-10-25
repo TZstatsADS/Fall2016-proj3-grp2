@@ -6,7 +6,7 @@
 ### Project 3
 ### ADS Spring 2016
 
-test <- function(fit_train, dat_test){
+test_gbm <- function(fit_train, dat_test){
   
   ### Fit the classfication model with testing data
   

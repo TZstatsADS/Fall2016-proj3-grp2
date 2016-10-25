@@ -7,7 +7,7 @@
 ### ADS Spring 2016
 
 
-train <- function(dat_train, label_train, par=NULL){
+train_gbm <- function(dat_train, label_train, par=NULL){
   
   ### Train a Gradient Boosting Model (GBM) using processed features from training images
   

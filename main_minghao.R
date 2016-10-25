@@ -11,6 +11,12 @@ lab_train <- y[-testindex]
 data_test <- X[testindex, ]
 lab_test <- y[testindex]
 
+
+#######################
+####### GBM ###########
+#######################
+
+
 ### Train a classification model with training images
 source("./lib/train.R")
 source("./lib/test.R")
@@ -24,14 +30,15 @@ err_cv <- array(dim=c(length(depth_values), 2))
 K <- 5  # number of CV folds
 for(k in 1:length(depth_values)){
   cat("k=", k, "\n")
-  err_cv[k,] <- cv.function(data_train, lab_train, depth_values[k], K)
+  err_cv[k,] <- cv.function(data_train, lab_train, depth_values[k], K, 
+                            train_gbm, test_gbm)
 }
 save(err_cv, file="./output/gbm_err_cv.RData")
 
 # Visualize CV results
-pdf("./fig/cv_results_gbm.pdf", width=7, height=5)
+pdf("./figs/cv_results_gbm.pdf", width=7, height=5)
 plot(depth_values, err_cv[,1], xlab="Interaction Depth", ylab="CV Error",
-     main="GBM Cross Validation Error", type="n", ylim=c(0, 0.15))
+     main="GBM Cross Validation Error", type="n", ylim=c(0, 0.5))
 points(depth_values, err_cv[,1], col="blue", pch=16)
 lines(depth_values, err_cv[,1], col="blue")
 arrows(depth_values, err_cv[,1]-err_cv[,2],depth_values, err_cv[,1]+err_cv[,2], 
@@ -43,20 +50,25 @@ depth_best <- depth_values[which.min(err_cv[,1])]
 par_best <- list(depth=depth_best)
 
 
-
-
 # train the model with the entire training set
-tm_train <- system.time(gbm_train <- train_gbm(data_train, lab_train))
+tm_train_gbm <- system.time(gbm_train <- train_gbm(data_train, lab_train, par_best))
 save(gbm_train, file="./output/gbm_train.RData")
 
 
 ### Make prediction 
-tm_test <- system.time(gbm_test <- test_gbm(gbm_train, data_test))
-save(pred_test, file="./output/gbm_test.RData")
+tm_test_gbm <- system.time(gbm_test <- test_gbm(gbm_train, data_test))
+save(gbm_test, file="./output/gbm_test.RData")
 1-sum(gbm_test!=lab_test)/666
 
 
-train <- function(dat_train, label_train, cost = 100, gamma = 1){
+
+#######################
+####### SVM ###########
+#######################
+
+
+
+train_svm <- function(dat_train, label_train, cost = 100, gamma = 1){
   
   ### Train a Gradient Boosting Model (GBM) using processed features from training images
   
@@ -74,7 +86,7 @@ train <- function(dat_train, label_train, cost = 100, gamma = 1){
   return(fit_svm)
 }
 
-test <- function(fit_train, dat_test){
+test_svm <- function(fit_train, dat_test){
   
   ### Fit the classfication model with testing data
   
