@@ -1,7 +1,7 @@
+# -*- coding: utf-8 -*-
 import cv2, os, sys
-import pandas as pd
 sys.path.append('/Users/pengfeiwang/Documents/anaconda2/lib/python2.7/site-packages')
-
+import pandas as pd
 
 pic_path = '/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/images/'
 winSize = (64, 64)
@@ -21,9 +21,10 @@ for pic in os.listdir(pic_path):
 		img_read = cv2.imread(os.path.join(pic_path,pic))
 		hog_dict[pic_name] = hog.compute(img_read, padding)
 		print '√ Finish ' + pic
-		break
-
-hog_feature = pd.DataFrame.from_dict(hog_dict)
+		
+my_dictionary = {k: v.tolist() for k, v in hog_dict.items()}
+hog_feature = {k: [i[0] for i in v] for k, v in my_dictionary.items()}
+hog_feature = pd.DataFrame.from_dict(hog_feature)
 hog_feature.to_csv('/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/hog_feature.csv')
 
 # use pca to reduce dimention
