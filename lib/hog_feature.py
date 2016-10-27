@@ -19,13 +19,15 @@ for pic in os.listdir(pic_path):
 	if pic.split('.')[1] == 'jpg':
 		pic_name = pic.split('.')[0]
 		img_read = cv2.imread(os.path.join(pic_path,pic))
+		img_read = cv2.resize(img_read, (128,128)) # to get the same number of features
 		hog_dict[pic_name] = hog.compute(img_read, padding)
 		print '√ Finish ' + pic
 		
 my_dictionary = {k: v.tolist() for k, v in hog_dict.items()}
 hog_feature = {k: [i[0] for i in v] for k, v in my_dictionary.items()}
-hog_feature = pd.DataFrame.from_dict(hog_feature)
+hog_feature = pd.DataFrame.from_dict(hog_feature, orient='index')
 hog_feature.to_csv('/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/hog_feature.csv')
+# should be 2000*142884
 
 # use pca to reduce dimention
 
