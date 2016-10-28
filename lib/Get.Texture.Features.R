@@ -17,16 +17,9 @@ Get.Texture.Features<-function(num,Name){
 }
 
 #---Extract Features---#
-Chicken.TF1 = Get.Texture.Features(1:180,"chicken")
-Chicken.TF2 = Get.Texture.Features(182:439,"chicken")
-Chicken.TF3 = Get.Texture.Features(441:797,"chicken")
-Chicken.TF4 = Get.Texture.Features(799:983,"chicken")
-Chicken.TF5 = Get.Texture.Features(985:1000,"chicken")
+Chicken.TF = Get.Texture.Features(1:1000,"chicken")
+save(Chicken.TF,file = "Chicken.TF.RData")
+Dog.TF = Get.Texture.Features(1:1000,"dog")
+save(Dog.TF,file="Dog.RData")
 
-# For chicken Pictures---Below are the failed pictures--#
-Name = "chicken"
-i = 181
-i = 440
-i = 798
-i = 984
-#
+
