@@ -30,5 +30,21 @@ hog_feature.to_csv('/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/h
 # should be 2000*142884
 
 # use pca to reduce dimention
+from sklearn.decomposition import PCA
+import pandas as pd
+dta = pd.read_csv('/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/hog_feature.csv')
+dta = dta.drop(dta.columns[[0]], axis=1) 
+pca = PCA(n_components=500)
+pca.fit(dta)
+print(pca.explained_variance_ratio_) 
 
+pca.transform(test_set)
 
+# Agglomerative Clustering
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.metrics import adjusted_rand_score
+for i in range(5):
+    model = AgglomerativeClustering(n_clusters=n_clusters)
+    adjusted_rand_score(labels_true, labels_pred)  
+    
+   
