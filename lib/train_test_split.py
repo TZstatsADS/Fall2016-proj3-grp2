@@ -1,5 +1,3 @@
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.grid_search import GridSearchCV
 from sklearn.cross_validation import train_test_split
 import pandas as pd
 

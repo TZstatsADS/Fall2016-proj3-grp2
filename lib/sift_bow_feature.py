@@ -2,6 +2,7 @@
 
 import cv2, os
 from cv2 import *
+sys.path.append('/Users/pengfeiwang/Documents/anaconda2/lib/python2.7/site-packages')
 import pandas as pd
 
 
