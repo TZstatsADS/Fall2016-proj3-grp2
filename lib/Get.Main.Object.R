@@ -38,9 +38,9 @@ Main = Test[row,col]
 #---Try another part of Main---# #The alternative part works! This is weird!
 #Main = Test[1:10,2:15]
 #----Get Texture Features ----#
-Texture = tryCatch(glcm(Main),error=function(e){return(glcm(Test))})
+Texture = tryCatch(glcm(Main),error=function(e){return(glcm(Test))}) #Can't solve the error part 
 TF = calc_features(Texture)
-Texture.Features = matrix(TF,ncol=1)
+Texture.Features = as.vector(TF)
 return(Texture.Features)
 }
 

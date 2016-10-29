@@ -10,7 +10,7 @@ Get.Texture.Features<-function(num,Name){
     Img = channel(readImage(file.name),"gray")
 #---Analyze Texture Features---#
     Temp = Get.Main(Img,NP=32)
-    Features = cbind(Features,Temp)
+    Features = cbind(Features,t(Temp))
   }
   colnames(Features) = c(rep(Name,length(num)))
   return(Features)
@@ -20,6 +20,6 @@ Get.Texture.Features<-function(num,Name){
 Chicken.TF = Get.Texture.Features(1:1000,"chicken")
 save(Chicken.TF,file = "Chicken.TF.RData")
 Dog.TF = Get.Texture.Features(1:1000,"dog")
-save(Dog.TF,file="Dog.RData")
+save(Dog.TF,file="Dog.TF.RData")
 
 

@@ -1,3 +1,49 @@
+#------Import Images into Grey Scale ------#
+read.image.grey<-function(num,size){
+  library(EBImage)
+  img.chicken = NULL
+  for(i in num){
+    print(i)
+    if(i %in% 1:9) file.name = paste0("chicken_000",i,".jpg")
+    if(i %in% 10:99) file.name = paste0("chicken_00",i,".jpg")
+    if(i %in% 100:999) file.name = paste0("chicken_0",i,".jpg")
+    if(i %in% 1000:9999) file.name = paste0("chicken_",i,".jpg")
+    A = channel(readImage(file.name),"gray")
+    img1 = as.vector(resize(channel(readImage(file.name),"gray"),w=size,h=size))
+    img.chicken = cbind(img.chicken,img1)
+  }
+  img.dog = NULL
+  for(i in num){
+    print(i)
+    if(i %in% 1:9) file.name = paste0("dog_000",i,".jpg")
+    if(i %in% 10:99) file.name = paste0("dog_00",i,".jpg")
+    if(i %in% 100:999) file.name = paste0("dog_0",i,".jpg")
+    if(i %in% 1000:9999) file.name = paste0("dog_",i,".jpg")
+    img1 = as.vector(resize((channel(readImage(file.name),"gray")),w =size, h = size))
+    img.dog = cbind(img.dog,img1)
+  }
+  return(list(chicken = img.chicken, dog = img.dog))
+}
+
+
+#-------Use PCA to reduce dimensions--------------#
+PCA.image<-function(IMatrix,EA){
+  # Imatrix.pca = prcomp(Imatrix,
+  #                      center = FALSE,
+  #                      scale. = TRUE)
+  sv<-svd(IMatrix)
+  D = sv$d
+  PV = cumsum(D^2)/sum(D^2)
+  depth = which(PV>=EA)[1]
+  D = diag(D)[1:depth,1:depth]
+  KLBasis = sv$u[,1:depth]
+  V = sv$v[,1:depth]
+  A = D%*%t(V)
+  return(list(KLBasis = KLBasis, PCA.A = A))
+}
+
+#------Use Mean Values to filter Image--------#
+
 Filter.Mask<-function(Image){
   for(i in 1:dim(Image)[2]){
     temp = Image[,i]
@@ -9,6 +55,7 @@ Filter.Mask<-function(Image){
   return(Filter.Image = Image)
 }
 
+#--------HLF.LDA.Function----#
 
 HLF.LDA<-function(Train,Test,EA){
   #reduce dimensions
@@ -47,10 +94,8 @@ HLF.LDA<-function(Train,Test,EA){
   return(result)
 }
 
-# Train = read.image.grey(1:10)
-# Train = cbind(Train$chicken,Train$dog)
-# Test = read.image.grey(11:12)
-# Test = cbind(Test$chicken,Test$dog)
+
+#---------Basic LDA-----#
 
 LDA<-function(Chicken,Dog){
   library(geigen)
@@ -80,11 +125,8 @@ LDA<-function(Chicken,Dog){
   return(W) #Optimal Projection vector
 }
 
-# Train = cbind(A$chicken,A$dog)
-# Train = PCA.image(Train,0.95)$PCA.A
-# Chicken = Train[,1:10]
-# Dog = Train[,11:20]
-# install.packages("geigen")
+
+#---------HLF.PCA------------------#
 HLF.PCA<-function(Train,Test,EA){
   Result = numeric(dim(Test)[2])
   n = dim(Train)[2]
@@ -104,49 +146,8 @@ HLF.PCA<-function(Train,Test,EA){
   return(Result)
 }
 
-PCA.image<-function(IMatrix,explanatory.ability){
-  # Imatrix.pca = prcomp(Imatrix,
-  #                      center = FALSE,
-  #                      scale. = TRUE)
-  sv<-svd(IMatrix)
-  D = sv$d
-  PV = cumsum(D^2)/sum(D^2)
-  depth = which(PV>=explanatory.ability)[1]
-  D = diag(D)[1:depth,1:depth]
-  KLBasis = sv$u[,1:depth]
-  V = sv$v[,1:depth]
-  A = D%*%t(V)
-  return(list(KLBasis = KLBasis, PCA.A = A))
-}
 
-# IMatrix = A$chicken
-# PCA.A = PCA.image(IMatrix,0.95)
 
-read.image.grey<-function(num,size){
-  library(EBImage)
-  img.chicken = NULL
-  for(i in num){
-    print(i)
-    if(i %in% 1:9) file.name = paste0("chicken_000",i,".jpg")
-    if(i %in% 10:99) file.name = paste0("chicken_00",i,".jpg")
-    if(i %in% 100:999) file.name = paste0("chicken_0",i,".jpg")
-    if(i %in% 1000:9999) file.name = paste0("chicken_",i,".jpg")
-    A = channel(readImage(file.name),"gray")
-    img1 = as.vector(resize(channel(readImage(file.name),"gray"),w=size,h=size))
-    img.chicken = cbind(img.chicken,img1)
-  }
-  img.dog = NULL
-  for(i in num){
-    print(i)
-    if(i %in% 1:9) file.name = paste0("dog_000",i,".jpg")
-    if(i %in% 10:99) file.name = paste0("dog_00",i,".jpg")
-    if(i %in% 100:999) file.name = paste0("dog_0",i,".jpg")
-    if(i %in% 1000:9999) file.name = paste0("dog_",i,".jpg")
-    img1 = as.vector(resize((channel(readImage(file.name),"gray")),w =size, h = size))
-    img.dog = cbind(img.dog,img1)
-  }
-  return(list(chicken = img.chicken, dog = img.dog))
-}
 
-# A = read.image.grey(1:10)
+
 
