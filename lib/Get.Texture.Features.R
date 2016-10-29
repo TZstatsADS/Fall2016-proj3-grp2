@@ -17,9 +17,11 @@ Get.Texture.Features<-function(num,Name){
 }
 
 #---Extract Features---#
+
 Chicken.TF = Get.Texture.Features(1:1000,"chicken")
-save(Chicken.TF,file = "Chicken.TF.RData")
 Dog.TF = Get.Texture.Features(1:1000,"dog")
 save(Dog.TF,file="Dog.TF.RData")
+save(Chicken.TF,file = "Chicken.TF.RData")
+
 
 

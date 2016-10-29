@@ -9,7 +9,7 @@ index = 1:1000
 Train.index = sample(1:1000,950)
 Test.index = index[-Train.index]
 
-#-----Load Texture Features---#
+#-----Load Texture Features---# #Not Fit using LDA
 load("Dog.TF.RData")
 load("Chicken.TF.RData")
 Train = cbind(Chicken.TF[,Train.index],Dog.TF[,Train.index])
@@ -56,8 +56,5 @@ Result = HLF.PCA(Train.Mask,Test.Mask,EA)
 #Prediction Rate
 return(length(which(Result==True.Class))/length(True.Class))
 }
-
-Main.HLF.LDA(Train,Test,0.95,Filter = FALSE,Method = "PCA")
-
 
 

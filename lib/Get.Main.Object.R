@@ -22,6 +22,8 @@ Temp[Temp!=0] = 1
 Test1 = matrix(Temp,nrow,ncol)
 col.index = which.max(apply(Test1,2,sum)) 
 row.index = which.max(apply(Test1,1,sum)) 
+
+GetSubMatrix<-function(col.index,row.index,ncol,nrow,NP){
 col.min = max(1,(col.index-NP)) 
 col.max = min(ncol,(col.index+NP-1)) 
 row.min = max(1,(row.index-NP)) 
@@ -32,9 +34,18 @@ if(col.min == 1){ col = 1:(NP*2)}
 if(col.max == ncol){ col = (ncol-2*NP+1):ncol}
 if(row.min == 1){ row = 1:(NP*2)}
 if(row.max == nrow){ row = (nrow-2*NP+1):nrow}
-if(max(dim(Test)<64)){ Main = Test}else{
-Main = Test[row,col]
+return(list(row=row,col=col))
 }
+Sub  = GetSubMatrix(col.index,row.index,ncol,nrow,NP)
+if(max(dim(Test)<64)){ Main = Test}else{
+Main = Test[Sub$row,Sub$col]
+}
+while(length(unique(as.numeric(Main)))<=32){
+  NP = NP+10
+  Sub = GetSubMatrix(col.index,row.index,ncol,nrow,NP)
+  Main = Test[Sub$row,Sub$col]
+}
+
 #---Try another part of Main---# #The alternative part works! This is weird!
 #Main = Test[1:10,2:15]
 #----Get Texture Features ----#

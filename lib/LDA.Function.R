@@ -57,7 +57,7 @@ Filter.Mask<-function(Image){
 
 #--------HLF.LDA.Function----#
 
-HLF.LDA<-function(Train,Test,EA){
+HLF.LDA<-function(Train,Test,EA,PCA){
   #reduce dimensions
   Train<-PCA.image(Train,EA)
   PCA.Train = Train$PCA.A
