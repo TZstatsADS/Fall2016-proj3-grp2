@@ -1,8 +1,9 @@
 # -*- coding: <utf-8> -*-
 
-import cv2, os
+import cv2, os, sys
 from cv2 import *
-sys.path.append('/Users/pengfeiwang/Documents/anaconda2/lib/python2.7/site-packages')
+from numpy import *
+sys.path.append('/Users/pw2406/anaconda/lib/python2.7/site-packages')
 import pandas as pd
 
 
@@ -23,49 +24,34 @@ def getImagedata(feature_det, bow_extract, path):
     return featureset
 
 feature_det = xfeatures2d.SIFT_create()
-image_paths = '/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/images/'
-
-
-train_set = pd.read_csv('')  # training set dir
-classes_train_set = train_set[['']]   # name of class
+image_paths = '/Users/pw2406/Desktop/Project3_poodleKFC_train/images/'
 
 
 bow_train = BOWKMeansTrainer(500)  # set the clusterCount => 500
 descriptors = preProcessImages(image_paths)
 
-# delete the none value
-descriptors_not_valid = []
-for i, j in enumerate(descriptors):
-    if j == None:
-        descriptors_not_valid.append(i)
-        
-descriptors_valid = [i for i in descriptors if i!= None]
-classes_train_set_valid = [classes_train_set[i] for i in range(len(classes_train_set)) if i not in descriptors_not_valid]
-image_valid = [os.listdir(image_paths)[i] for i in range(len(os.listdir(image_paths))) if i not in descriptors_not_valid]
 
-
-for des in descriptors_valid:
+for des in descriptors:
     bow_train.add(des)
 
 voc = bow_train.cluster()
-
-
 matcher = BFMatcher(NORM_L2)
 bow_extract = BOWImgDescriptorExtractor(feature_det,matcher)
 bow_extract.setVocabulary(voc)
 
 
 traindata = []  
-for image in image_valid:
+for image in os.listdir(image_paths):
     imagepath = os.path.join(image_paths,image)
+    print imagepath
     featureset = getImagedata(feature_det,bow_extract,imagepath)
     traindata.append(featureset)
     
 # traidata ==> 2000 * 500
-# add ==> classes_train_set_valid
+# add ==> classes
 
-trainning_set = pd.DataFrame(traidata)
-trainning_set['class'] = classes_train_set_valid
-trainning_set.to_csv('/Users/pengfeiwang/Desktop/bow_traing.csv')
+trainning_set = pd.DataFrame([i.tolist() for i in traindata])
+trainning_set = trainning_set[0].apply(pd.Series)
+trainning_set.to_csv('/Users/pw2406/Desktop/bow_traing.csv')
 
 
