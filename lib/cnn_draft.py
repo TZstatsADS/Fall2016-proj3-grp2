@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import lasagne,theano,scipy
 import sys,pickle,os,re
 import theano.tensor as T

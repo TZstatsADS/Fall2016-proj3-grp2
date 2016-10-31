@@ -42,16 +42,19 @@ bow_extract.setVocabulary(voc)
 
 traindata = []  
 for image in os.listdir(image_paths):
-    imagepath = os.path.join(image_paths,image)
-    print imagepath
-    featureset = getImagedata(feature_det,bow_extract,imagepath)
-    traindata.append(featureset)
+	if image.split('.')[1] != 'DS_Store':
+	    imagepath = os.path.join(image_paths,image)
+	    print imagepath
+	    featureset = getImagedata(feature_det,bow_extract,imagepath)
+	    traindata.append(featureset)
     
 # traidata ==> 2000 * 500
 # add ==> classes
 
 trainning_set = pd.DataFrame([i.tolist() for i in traindata])
 trainning_set = trainning_set[0].apply(pd.Series)
+index_name = [i for i in os.listdir(image_paths) if i != '.DS_Store']
+trainning_set.index = index_name
 trainning_set.to_csv('/Users/pw2406/Desktop/bow_traing.csv')
 
 

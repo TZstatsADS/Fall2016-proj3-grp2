@@ -28,12 +28,11 @@ my_dictionary = {k: v.tolist() for k, v in hog_dict.items()}
 hog_feature = {k: [i[0] for i in v] for k, v in my_dictionary.items()}
 hog_feature = pd.DataFrame.from_dict(hog_feature, orient='index')
 hog_feature.to_csv('/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/hog_feature.csv')
-# should be 2000*142884
+## should be 2000*142884, around 4.3G
 
 
 # use pca to reduce dimention
 from sklearn.decomposition import PCA
-import pandas as pd
 dta = pd.read_csv('/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/hog_feature.csv')
 dta = dta.drop(dta.columns[[0]], axis=1) 
 
