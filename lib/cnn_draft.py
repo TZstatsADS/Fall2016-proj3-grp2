@@ -9,7 +9,7 @@ from scipy.misc import *
 from collections import OrderedDict
 from lasagne.init import Constant, GlorotUniform
 
-###save the data from dir to pickle file
+### save the data from dir to pickle file
 path="/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/images/"
 imagename=filter(lambda x:re.search(r".jpg",x),os.listdir(path))
 np.random.shuffle(imagename)
@@ -33,7 +33,7 @@ pickle.dump(trainy,open("/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_tr
 pickle.dump(testy,open("/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/data/testy.pkl","wb"))
 
 
-###load data from file
+### load data from file
 train_x=pickle.load(open("/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/data/trainx.pkl","rb"))
 test_x=pickle.load(open("/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/data/testx.pkl","rb"))
 train_y=pickle.load(open("/Users/pengfeiwang/Desktop/dogkfc/Project3_poodleKFC_train/data/trainy.pkl","rb"))
@@ -46,7 +46,7 @@ test_y=test_y.astype("int64")
 rng=np.random
 
 
-###start to build the CNN network
+### start to build the CNN network
 x1=T.tensor4('x1',dtype='float64')
 y1=T.vector('y1',dtype='int64')
 batchsize=100
@@ -75,9 +75,11 @@ updates = apply_nesterov_momentum(updates_sgd, params, momentum=0.9)
 
 train_model = theano.function([x1,y1],outputs=loss,updates=updates)
 
-pred=theano.function([x1,y1],outputs=lasagne.objectives.categorical_crossentropy(prediction,y1))
+pred = theano.function([x1,y1],outputs=lasagne.objectives.categorical_crossentropy(prediction,y1))
 
-###begin to train
+# pred=theano.function([x1,y1],outputs=prediction,on_unused_input='ignore')
+
+### begin to train
 renewtrain=len(train_x)/batchsize
 renewtest=len(test_x)/batchsize
 for i in range(15000):
@@ -99,5 +101,12 @@ for i in range(15000):
         tmp=rng.permutation(1750)
         train_x=train_x[tmp]
         train_y=train_y[tmp]
-    
+
+
+
+# result = pred(tmp_x,tmp_y)
+# result = [i[0] for i in result]
+# result_new = [0 if i>=0.5 else 1 for i in result]
+# error_rate = sum([abs(i) for i in (result_new - tmp_y).tolist()])/250.0
+## when the i=36, rate=0.001, the test error is 0.2
 
