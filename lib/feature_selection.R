@@ -44,5 +44,5 @@ for (i in 1:l.cutoff){
                            lab_train, data_test_pca, lab_test)
 }
 
-cutoff_best <- cu.var.cutoff[which.min(pca.rate)]
+cutoff_best <- cu.var.cutoff[which.max(pca.rate)]
 
