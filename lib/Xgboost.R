@@ -38,9 +38,6 @@ dim(data_train)
 dim(data_test)
 str(data_train)
 
-
-
-
 bstSparse <- xgboost(data = data_train, label = lab_train, max.depth = 2, eta = 1, nthread = 2, nround = 2, objective = "binary:logistic")
 
 bstDense <- xgboost(data = as.matrix(data_train), label = lab_train, max.depth = 2, eta = 1, nthread = 2, nrounds = 2, objective = "binary:logistic")
@@ -76,7 +73,6 @@ Eta <- as.numeric(which.min(error_rate))
 Eta
 #1
 error_rate[which.min(error_rate)]
-
 
 #select the max_depth
 set.seed(2)
@@ -141,8 +137,6 @@ error_rate[which.min(error_rate)]
 #Subsample = 15
 #Colsample_bytree = 9
 
-
-
 cv.res <- xgb.cv(data = data_test, label = lab_test, max.depth = 7, eta = 1, min_child_weight = 8, nround = 29,subsample = 15, colsample_bytree = 9, objective = "binary:logistic", nfold = 5)
 error_rate <- mean(cv.res$test.error.mean)
 error_rate
@@ -203,7 +197,6 @@ Eta <- as.numeric(which.min(error_rate))
 Eta
 #15
 error_rate[which.min(error_rate)]
-
 
 #select the max_depth
 set.seed(2)
@@ -268,8 +261,6 @@ error_rate[which.min(error_rate)]
 #Subsample = 19
 #Colsample_bytree = 9
 
-
-
 cv.res <- xgb.cv(data = data_test, label = lab_test, max.depth = 8, eta = 15, min_child_weight = 12, nround = 29,subsample = 19, colsample_bytree = 9, objective = "binary:logistic", nfold = 5)
 error_rate <- mean(cv.res$test.error.mean)
 error_rate
@@ -330,7 +321,6 @@ Eta <- as.numeric(which.min(error_rate))
 Eta
 #1
 error_rate[which.min(error_rate)]
-
 
 #select the max_depth
 set.seed(2)
@@ -400,10 +390,3 @@ error_rate <- mean(cv.res$test.error.mean)
 error_rate
 1-error_rate
 #73.89%
-
-
-
-
-
-
-
