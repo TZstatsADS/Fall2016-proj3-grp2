@@ -40,7 +40,7 @@ for (i in 1:l.cutoff){
   
   ##use traintest() to train and test your model under different pca cutoff
   ##change train_svm, test_svm below
-  pca.rate[i] <- traintest(train_svm, test_svm, data_train_pca, 
+  pca.rate[i] <- traintest(train_gbm, test_gbm, data_train_pca, 
                            lab_train, data_test_pca, lab_test)
 }
 
