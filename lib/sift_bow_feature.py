@@ -1,9 +1,10 @@
 # -*- coding: <utf-8> -*-
 
 import cv2, os, sys
+import pickle
 from cv2 import *
 from numpy import *
-sys.path.append('/Users/pw2406/anaconda/lib/python2.7/site-packages')
+sys.path.append('/Users/pengfeiwang/Documents/anaconda2/lib/python2.7/site-packages')
 import pandas as pd
 
 
@@ -35,6 +36,7 @@ for des in descriptors:
     bow_train.add(des)
 
 voc = bow_train.cluster()
+# pickle.dump(open('/Users/pw2406/Desktop/voc_bow.p','wb'))
 matcher = BFMatcher(NORM_L2)
 bow_extract = BOWImgDescriptorExtractor(feature_det,matcher)
 bow_extract.setVocabulary(voc)
