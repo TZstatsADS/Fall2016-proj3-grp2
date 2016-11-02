@@ -49,6 +49,9 @@ Term: Fall 2016
    + Constructed hog and bag of word features
    + Deployed CNN model
 
++ Kaisheng Wang
+   + Run Xgboost model
+   + Select the best parameter in Xgboost.
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
