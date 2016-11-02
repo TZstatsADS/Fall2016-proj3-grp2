@@ -15,13 +15,13 @@ Term: Fall 2016
 
 
 
-|               | Hog_pca       | Ori_Sift      | Sift_bow     |
-| ------------- |:-------------:| -------------:|-------------:|
-| GBM           |               |               |              |
-| RF            |      	        |           	|     	       |
-| SVM           |               |           	|              |
-| XGB           |               |           	| 	       |
-| CNN           |               |           	| 	       |
+|               | Hog_pca       | Ori_Sift      | Sift_bow     | Resized_Img  |
+| ------------- |:-------------:| :------------:|:------------:|:------------:|
+| GBM           |               |               |              |	NA    |
+| RF            |      	        |           	|     	       |        NA    |
+| SVM           |               |           	|              |	NA    |
+| XGB           |               |           	| 	       |        NA    |
+| CNN           |       NA      |    NA     	|      NA      |      92.41%  |  
 
 	
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
