@@ -29,12 +29,12 @@ train <- function(feature.adv, feature.baseline, label_train){
   ### Train with gradient boosting model using feature.baseline
   
   ### Model selection with cross-validation
-  # Choosing between different values of interaction depth for GBM
   source("./final version/cross_validation.R")
   source("./final version/train_gbm.R")
   source("./final version/test_gbm.R")
   
-  depth_values <- seq(3, 11, 2)
+  # Choosing between different values of depth and nm for GBM
+  depth_values <- seq(3, 9, 2)
   nm_values <- c(5, 10, 20)
   err.cv <- matrix(NA, length(depth_values), length(nm_values))
   K <- 5  # number of CV folds
@@ -63,7 +63,6 @@ train <- function(feature.adv, feature.baseline, label_train){
   ### Train with support vector machine using feature.adv
   
   ### Model selection with cross-validation
-  # Choosing between different values of interaction depth for GBM
   source("./final version/train_svm.R")
   source("./final version/test_svm.R")
   
