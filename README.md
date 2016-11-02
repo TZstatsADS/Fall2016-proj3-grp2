@@ -56,6 +56,10 @@ Term: Fall 2016
    + Extracted texture and shape features
    + Tunned parameters with LDA model
 
++ Zheyuan Chen
+   + Tuned and run the randomforest, bagging and bartMachine models.
+   + Presentation
+
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
 ```
