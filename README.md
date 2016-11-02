@@ -5,18 +5,13 @@
 Term: Fall 2016
 
 + Team #
-+ Team members
-	+ Chen, Zheyuan
-	+ Dai, Minghao
-	+ Li, Rong rong
-	+ Wang, Pengfei
-	+ Wang, Kaisheng
++ Team members:  ZheyuanDai Chen, Minghao Dai, Rong Li, Pengfei Wang, Kaisheng Wang
 + Project summary: In this project, we created a classification engine for images of poodles versus images of fried chickens. 
 
 
 
 |               | Hog_pca       | Ori_Sift      | Sift_bow     | Resized_Img  |
-| ------------- |:-------------:| :------------:|:------------:|:------------:|
+| ------------- |:-------------:|:-------------:|:------------:|:------------:|
 | GBM           |               |               |              |	NA    |
 | RF            |      	        |           	|     	       |        NA    |
 | SVM           |               |           	|              |	NA    |
@@ -24,9 +19,10 @@ Term: Fall 2016
 | CNN           |       NA      |    NA     	|      NA      |      92.41%  |  
 
 
-+ Windows and Mac machine
++ Windows and Mac i5 16g RAM
 + R version: 3.2.3; Python version: 2.7
-+ Packages: gbm, e1071
++ R Packages: gbm, e1071
++ Python Package: Opencv3, simplecv, Theano, lasagne
 
 	
 **Contribution statement**: 
