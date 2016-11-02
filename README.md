@@ -4,7 +4,7 @@
 
 Term: Fall 2016
 
-+ Team #
++ Team # I have a dog, I have a chicken...Ehhh...
 + Team members:  ZheyuanDai Chen, Minghao Dai, Rong Li, Pengfei Wang, Kaisheng Wang
 + Project summary: In this project, we created a classification engine for images of poodles versus images of fried chickens. 
 
