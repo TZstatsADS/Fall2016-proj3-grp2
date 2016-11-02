@@ -1,5 +1,5 @@
 # Project: Labradoodle or Fried Chicken? 
-![image](https://s-media-cache-ak0.pinimg.com/236x/6b/01/3c/6b013cd759c69d17ffd1b67b3c1fbbbf.jpg)
+![image](https://github.com/TZstatsADS/Fall2016-proj3-grp2/blob/master/figs/preface_pic.jpg)
 ### [Full Project Description](doc/project3_desc.html)
 
 Term: Fall 2016
@@ -41,8 +41,7 @@ Term: Fall 2016
 	
 **Contribution statement**: 
 + Minghao Dai:
-   + Tuned and run the GBM and SVM models
-   + Tried to use PCA to do feature selection
+   + Tuned and run the GBM and SVM models and tried to use PCA to do feature selection
    + Completed the final train.R and test.R functions
    
 + Pengfei Wang:
@@ -51,7 +50,11 @@ Term: Fall 2016
 
 + Kaisheng Wang
    + Run Xgboost model
-   + Select the best parameter in Xgboost.
+   + Selected the best parameter in Xgboost.
+ 
++ Rong Li
+   + Extracted texture and shape features
+   + Tunned parameters with LDA model
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
