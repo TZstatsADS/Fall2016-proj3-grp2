@@ -5,8 +5,16 @@
 Term: Fall 2016
 
 + Team # I have a dog, I have a chicken...Ehhh...
-+ Team members:  Zheyuan Chen, Minghao Dai, Rong Li, Pengfei Wang, Kaisheng Wang
-+ Project summary: In this project, we created a classification engine for images of poodles versus images of fried chickens.Here is the game guidance. First of all, we need to transform the visual information to some numbers which can be understood and manipulated by computers. Then, filtering and selecting features from the first stage will help us improve the computing speed and prediction rate. At the final found, we feed our selected features to a classifier to carry our images to the right destination.
++ Team members:  
+ + Zheyuan Chen
+ + Minghao Dai  
+ + Rong Li 
+ + Pengfei Wang 
+ + Kaisheng Wang
+ 
++ Project summary: 
+
+ In this project, we created a classification engine for images of poodles versus images of fried chickens.Here is the game guidance. First of all, we need to transform the visual information to some numbers which can be understood and manipulated by computers. Then, filtering and selecting features from the first stage will help us improve the computing speed and prediction rate. At the final found, we feed our selected features to a classifier to carry our images to the right destination.
 
  + Feature Extraction and Selection:
      
