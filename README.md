@@ -24,17 +24,13 @@ Term: Fall 2016
      
      As for the models, we briefly tested all possibly good models with different feature extraction and selection combination. From all of these primary models, we found sift with bag of words features generally perform the best in every model. As for model selection, Bayesian additive regression tree and support vector machine have the best prediction rate.At the final round of model competition, support vector machine beat bartmachine by a slightly higher prediction rate, faster speed and less computer memory requirement.
 
- 
-
-
-
-|               | Hog_pca       | Ori_Sift      | Sift_bow     | Resized_Img  |
-| ------------- |:-------------:|:-------------:|:------------:|:------------:|
-| GBM           |     NA        |  70.65%       |   85.70%     |	NA    |
-| RF            |     51.25% 	| 71.40%       	|82.60%        |        NA    |
-| SVM           |  55.00%       | 74.85%        |  87.11%      |	NA    |
-| XGB           |   47.85%      | 62.90%     	| 73.89%       |        NA    |
-| CNN           |       NA      |    NA     	|      NA      |      92.41%  |  
+			|               | Hog_pca       | Ori_Sift      | Sift_bow     | Resized_Img  |
+			| ------------- |:-------------:|:-------------:|:------------:|:------------:|
+			| GBM           |     NA        |  70.65%       |   85.70%     |	NA    |
+			| RF            |     51.25% 	| 71.40%       	|82.60%        |        NA    |
+			| SVM           |  55.00%       | 74.85%        |  87.11%      |	NA    |
+			| XGB           |   47.85%      | 62.90%     	| 73.89%       |        NA    |
+			| CNN           |       NA      |    NA     	|      NA      |      92.41%  |  
 
 
 + Windows and Mac i5 16g RAM
@@ -48,6 +44,10 @@ Term: Fall 2016
    + Tuned and run the GBM and SVM models
    + Tried to use PCA to do feature selection
    + Completed the final train.R and test.R functions
+   
++ Pengfei Wang:
+   + Constructed hog and bag of word features
+   + Deployed CNN model
 
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
